@@ -37,9 +37,9 @@ export const Route = createFileRoute("/authors/$slug")({
 
 function AuthorPage() {
   const { author } = Route.useLoaderData();
-  const related = author.storySlugs
-    .map((s: string) => stories[s])
-    .filter((s): s is Story => Boolean(s));
+  const related: Story[] = author.storySlugs
+    .map((slug: string) => stories[slug])
+    .filter((s: Story | undefined): s is Story => Boolean(s));
 
   const initials = author.name
     .split(/\s+/)

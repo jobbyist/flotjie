@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-night.jpg";
 import beforeCover from "@/assets/before-i-knew-my-name.jpeg.asset.json";
 import shadowsCover from "@/assets/where-the-shadows-break.png.asset.json";
+import { NewsletterForm } from "@/components/site/NewsletterForm";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -115,19 +117,21 @@ function Hero() {
           exploring identity, family, survival, loss, resilience and redemption.
         </p>
         <div className="animate-fade-up mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#collection"
+          <Link
+            to="/story/$slug"
+            params={{ slug: "before-i-knew-my-name" }}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gold text-primary-foreground text-[12px] uppercase tracking-[0.28em] rounded-sm hover:bg-[var(--gold-soft)] transition-colors glow-amber"
           >
             Explore the Collection
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-          <a
-            href="#collection"
+          </Link>
+          <Link
+            to="/read/$slug/$chapter"
+            params={{ slug: "before-i-knew-my-name", chapter: "1" }}
             className="inline-flex items-center gap-3 px-8 py-4 border border-border/70 text-foreground text-[12px] uppercase tracking-[0.28em] rounded-sm hover:border-gold hover:text-gold transition-colors"
           >
             Begin Reading
-          </a>
+          </Link>
         </div>
 
         <div className="animate-fade-up mt-24 flex justify-center">
