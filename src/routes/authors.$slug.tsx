@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getAuthor, stories } from "@/lib/stories";
+import { getAuthor, stories, type Story } from "@/lib/stories";
 import { Nav } from "@/components/site/Nav";
 import heroImg from "@/assets/hero-night.jpg";
 
@@ -37,11 +37,13 @@ export const Route = createFileRoute("/authors/$slug")({
 
 function AuthorPage() {
   const { author } = Route.useLoaderData();
-  const related = author.storySlugs.map((s) => stories[s]).filter(Boolean);
+  const related = author.storySlugs
+    .map((s: string) => stories[s])
+    .filter((s): s is Story => Boolean(s));
 
   const initials = author.name
     .split(/\s+/)
-    .map((n) => n[0])
+    .map((n: string) => n[0])
     .join("")
     .slice(0, 2)
     .toUpperCase();
@@ -79,7 +81,7 @@ function AuthorPage() {
           Biography
         </p>
         <div className="space-y-6 font-serif text-lg md:text-xl leading-relaxed text-foreground/85">
-          {author.bio.map((p, i) => (
+          {author.bio.map((p: string, i: number) => (
             <p key={i}>{p}</p>
           ))}
         </div>
@@ -92,7 +94,7 @@ function AuthorPage() {
           <h2 className="font-serif text-3xl md:text-5xl">The three pillars of the work</h2>
         </div>
         <div className="grid gap-px bg-border/40 border border-border/40 rounded-sm overflow-hidden md:grid-cols-3">
-          {author.pillars.map((p) => (
+          {author.pillars.map((p: { title: string; body: string }) => (
             <div key={p.title} className="bg-background p-8 md:p-10">
               <div className="flex items-center gap-3 text-gold mb-5">
                 <span className="h-px w-8 bg-gold/60" />
@@ -112,7 +114,7 @@ function AuthorPage() {
           <h2 className="font-serif text-3xl md:text-5xl">Stories by {author.name}</h2>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
-          {related.map((s) => (
+          {related.map((s: Story) => (
             <Link
               key={s.slug}
               to="/story/$slug"

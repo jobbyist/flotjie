@@ -10,33 +10,68 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StorySlugRouteImport } from './routes/story.$slug'
+import { Route as AuthorsSlugRouteImport } from './routes/authors.$slug'
+import { Route as ReadSlugChapterRouteImport } from './routes/read.$slug.$chapter'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StorySlugRoute = StorySlugRouteImport.update({
+  id: '/story/$slug',
+  path: '/story/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthorsSlugRoute = AuthorsSlugRouteImport.update({
+  id: '/authors/$slug',
+  path: '/authors/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReadSlugChapterRoute = ReadSlugChapterRouteImport.update({
+  id: '/read/$slug/$chapter',
+  path: '/read/$slug/$chapter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/authors/$slug': typeof AuthorsSlugRoute
+  '/story/$slug': typeof StorySlugRoute
+  '/read/$slug/$chapter': typeof ReadSlugChapterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/authors/$slug': typeof AuthorsSlugRoute
+  '/story/$slug': typeof StorySlugRoute
+  '/read/$slug/$chapter': typeof ReadSlugChapterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/authors/$slug': typeof AuthorsSlugRoute
+  '/story/$slug': typeof StorySlugRoute
+  '/read/$slug/$chapter': typeof ReadSlugChapterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/authors/$slug' | '/story/$slug' | '/read/$slug/$chapter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/authors/$slug' | '/story/$slug' | '/read/$slug/$chapter'
+  id:
+    | '__root__'
+    | '/'
+    | '/authors/$slug'
+    | '/story/$slug'
+    | '/read/$slug/$chapter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthorsSlugRoute: typeof AuthorsSlugRoute
+  StorySlugRoute: typeof StorySlugRoute
+  ReadSlugChapterRoute: typeof ReadSlugChapterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +83,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/story/$slug': {
+      id: '/story/$slug'
+      path: '/story/$slug'
+      fullPath: '/story/$slug'
+      preLoaderRoute: typeof StorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/authors/$slug': {
+      id: '/authors/$slug'
+      path: '/authors/$slug'
+      fullPath: '/authors/$slug'
+      preLoaderRoute: typeof AuthorsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/read/$slug/$chapter': {
+      id: '/read/$slug/$chapter'
+      path: '/read/$slug/$chapter'
+      fullPath: '/read/$slug/$chapter'
+      preLoaderRoute: typeof ReadSlugChapterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthorsSlugRoute: AuthorsSlugRoute,
+  StorySlugRoute: StorySlugRoute,
+  ReadSlugChapterRoute: ReadSlugChapterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

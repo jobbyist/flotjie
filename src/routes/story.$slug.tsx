@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getStory, stories } from "@/lib/stories";
+import { getStory, stories, type Story } from "@/lib/stories";
 import { Nav } from "@/components/site/Nav";
 
 export const Route = createFileRoute("/story/$slug")({
@@ -39,7 +39,9 @@ export const Route = createFileRoute("/story/$slug")({
 
 function StoryPage() {
   const { story } = Route.useLoaderData();
-  const otherStories = Object.values(stories).filter((s) => s.slug !== story.slug);
+  const otherStories: Story[] = Object.values(stories).filter(
+    (s: Story) => s.slug !== story.slug,
+  );
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -123,7 +125,7 @@ function StoryPage() {
         </p>
 
         <div className="mt-16 flex flex-wrap justify-center gap-3">
-          {story.themes.map((t) => (
+          {story.themes.map((t: string) => (
             <span
               key={t}
               className="text-[11px] uppercase tracking-[0.3em] px-4 py-2 border border-border/60 rounded-sm text-muted-foreground"
@@ -150,7 +152,7 @@ function StoryPage() {
           <h2 className="font-serif text-3xl md:text-5xl">Chapters</h2>
         </div>
         <ol className="divide-y divide-border/40 border-y border-border/40">
-          {story.chapters.map((c, i) => (
+          {story.chapters.map((c: { title: string; body: string }, i: number) => (
             <li key={i}>
               <Link
                 to="/read/$slug/$chapter"
@@ -180,7 +182,7 @@ function StoryPage() {
           </p>
           <h2 className="font-serif text-3xl md:text-4xl text-center mb-12">Continue the universe</h2>
           <div className="grid gap-8 md:grid-cols-2">
-            {otherStories.map((s) => (
+            {otherStories.map((s: Story) => (
               <Link
                 key={s.slug}
                 to="/story/$slug"
