@@ -152,6 +152,7 @@ function StoryCard({
   genre,
   time,
   description,
+  slug,
   reverse = false,
 }: {
   cover: string;
@@ -160,6 +161,7 @@ function StoryCard({
   genre: string;
   time: string;
   description: string;
+  slug: string;
   reverse?: boolean;
 }) {
   return (
@@ -203,14 +205,22 @@ function StoryCard({
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-xl">
           {description}
         </p>
-        <div className="pt-2">
-          <a
-            href="#"
+        <div className="pt-2 flex flex-wrap gap-6">
+          <Link
+            to="/story/$slug"
+            params={{ slug }}
             className="group inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.3em] text-foreground border-b border-gold/50 pb-2 hover:text-gold hover:border-gold transition-colors"
           >
             Read the Story
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
+          </Link>
+          <Link
+            to="/read/$slug/$chapter"
+            params={{ slug, chapter: "1" }}
+            className="group inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.3em] text-muted-foreground hover:text-gold transition-colors"
+          >
+            Start Reading
+          </Link>
         </div>
       </div>
     </article>
@@ -286,6 +296,7 @@ function Index() {
       >
         <div className="space-y-32 md:space-y-48">
           <StoryCard
+            slug="before-i-knew-my-name"
             cover={beforeCover.url}
             eyebrow="Volume 01 — Memoir"
             title="Before I Knew My Name"
@@ -295,6 +306,7 @@ function Index() {
           />
           <StoryCard
             reverse
+            slug="where-the-shadows-break"
             cover={shadowsCover.url}
             eyebrow="Volume 02 — Literary Fiction"
             title="Where The Shadows Break"
@@ -382,23 +394,7 @@ function Index() {
             Receive new releases, exclusive chapters, author reflections and
             behind-the-scenes updates before anyone else.
           </p>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col sm:flex-row gap-3 items-stretch"
-          >
-            <input
-              type="email"
-              required
-              placeholder="Your email address"
-              className="flex-1 bg-card/60 border border-border/60 rounded-sm px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold transition-colors"
-            />
-            <button
-              type="submit"
-              className="px-6 py-4 bg-gold text-primary-foreground text-[12px] uppercase tracking-[0.28em] rounded-sm hover:bg-[var(--gold-soft)] transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
+          <NewsletterForm source="homepage" />
           <p className="mt-5 text-xs text-muted-foreground/70">
             No noise. Only the quiet updates that matter.
           </p>
