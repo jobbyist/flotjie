@@ -92,6 +92,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Flotjie's Collection — Stories That Stay With You" },
+      { name: "description", content: "A premium cinematic digital library for the Flotjie's literary collection, blending streaming service immersion with literary prestige." },
+      { property: "og:description", content: "A premium cinematic digital library for the Flotjie's literary collection, blending streaming service immersion with literary prestige." },
+      { name: "twitter:description", content: "A premium cinematic digital library for the Flotjie's literary collection, blending streaming service immersion with literary prestige." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ae5f4bc2-e3c7-409e-89e1-2740943309c0/id-preview-96bf208d--4bdc5470-ca39-4216-8f33-be37c92a1b14.lovable.app-1782926934192.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ae5f4bc2-e3c7-409e-89e1-2740943309c0/id-preview-96bf208d--4bdc5470-ca39-4216-8f33-be37c92a1b14.lovable.app-1782926934192.png" },
     ],
     links: [
       {
