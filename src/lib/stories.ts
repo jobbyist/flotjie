@@ -1,7 +1,13 @@
 import beforeCover from "@/assets/before-i-knew-my-name.jpeg.asset.json";
 import shadowsCover from "@/assets/where-the-shadows-break.png.asset.json";
+import gotAwayCover from "@/assets/the-one-that-got-away.jpg.asset.json";
+import myselfCover from "@/assets/if-i-do-say-so-myself.jpg.asset.json";
+import betweenCover from "@/assets/between-what-was-and-what-became.jpg.asset.json";
 import beforeChaptersData from "@/data/before-chapters.json";
 import shadowsChaptersData from "@/data/shadows-chapters.json";
+import gotAwayChaptersData from "@/data/book3-chapters.json";
+import myselfChaptersData from "@/data/book4-chapters.json";
+import betweenChaptersData from "@/data/book5-chapters.json";
 
 export type Chapter = { title: string; body: string };
 
@@ -59,6 +65,60 @@ export const stories: Record<string, Story> = {
     chapters: shadowsChaptersData as Chapter[],
     accent: "from-[oklch(0.22_0.03_260)] to-[oklch(0.12_0.02_260)]",
   },
+  "the-one-that-got-away": {
+    slug: "the-one-that-got-away",
+    volume: "Volume 03",
+    title: "The One That Got Away",
+    tagline: "The childhood she never got the chance to keep.",
+    genre: "Memoir",
+    readTime: "3 hr read",
+    synopsis:
+      "The eldest of seven, she became her family's protector before she understood what protection would cost her — until a marriage she never chose brought her childhood to an abrupt end.",
+    longDescription:
+      "The eldest of seven, she became her family's protector before she understood what protection would cost her — until a marriage she never chose brought her childhood to an abrupt end. Set in a crowded house on the corner, this memoir follows a girl who learned to read a stepfather's moods the way other children learned bedtime stories, and who carried her siblings through every storm until there was no one left to carry her.",
+    themes: ["Childhood", "Family", "Protection", "Survival", "Lost Innocence"],
+    quote: "I was the commander by default — not because I wanted to be, but because life made me that way.",
+    cover: gotAwayCover.url,
+    authorSlug: "florence-k",
+    chapters: gotAwayChaptersData as Chapter[],
+    accent: "from-[oklch(0.22_0.04_40)] to-[oklch(0.13_0.02_260)]",
+  },
+  "if-i-do-say-so-myself": {
+    slug: "if-i-do-say-so-myself",
+    volume: "Volume 04",
+    title: "If I Do Say So Myself…",
+    tagline: "Reclaiming a voice the world tried to decide for her.",
+    genre: "Memoir",
+    readTime: "2 hr read",
+    synopsis:
+      "Years after other people decided who she was allowed to be, she takes the pen back — telling her own story, on her own terms, for the first time.",
+    longDescription:
+      "Years after other people decided who she was allowed to be, she takes the pen back — telling her own story, on her own terms, for the first time. Married at fifteen, betrayed, widowed, and left to raise six children alone, she studies by lamplight, prays through the loneliness, and refuses to let survival be mistaken for defeat.",
+    themes: ["Faith", "Motherhood", "Resilience", "Independence", "Testimony"],
+    quote: "Even if I say so myself, I have lived. I have endured. And I am still here.",
+    cover: myselfCover.url,
+    authorSlug: "florence-k",
+    chapters: myselfChaptersData as Chapter[],
+    accent: "from-[oklch(0.22_0.05_60)] to-[oklch(0.12_0.02_260)]",
+  },
+  "between-what-was-and-what-became": {
+    slug: "between-what-was-and-what-became",
+    volume: "Volume 05",
+    title: "Between What Was & What Became…",
+    tagline: "A family, a legacy, and the woman who built both.",
+    genre: "Memoir",
+    readTime: "2 hr read",
+    synopsis:
+      "Surrounded by the family she built from the wreckage of the one she survived, she measures the distance between the girl she was and the woman she became.",
+    longDescription:
+      "Surrounded by the family she built from the wreckage of the one she survived, she measures the distance between the girl she was and the woman she became. A meditation on devotion, deferred dreams and the quiet cost of loyalty — told through the life of a woman whose greatest journey was never across an ocean, but within the walls of her own home.",
+    themes: ["Legacy", "Devotion", "Dreams Deferred", "Betrayal", "Family"],
+    quote: "She lived faithfully, even when fate was cruel. She dreamed fiercely, even when the world denied her.",
+    cover: betweenCover.url,
+    authorSlug: "florence-k",
+    chapters: betweenChaptersData as Chapter[],
+    accent: "from-[oklch(0.22_0.03_200)] to-[oklch(0.13_0.02_260)]",
+  },
 };
 
 export const storyList: Story[] = Object.values(stories);
@@ -105,7 +165,13 @@ export const authors: Record<string, Author> = {
         body: "Each volume is composed with the visual grammar of a limited series — designed to be read today, remembered tomorrow, adapted for generations.",
       },
     ],
-    storySlugs: ["before-i-knew-my-name", "where-the-shadows-break"],
+    storySlugs: [
+      "before-i-knew-my-name",
+      "where-the-shadows-break",
+      "the-one-that-got-away",
+      "if-i-do-say-so-myself",
+      "between-what-was-and-what-became",
+    ],
   },
 };
 
