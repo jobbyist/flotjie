@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import heroImg from "@/assets/hero-night.jpg";
-import beforeCover from "@/assets/before-i-knew-my-name.jpeg.asset.json";
-import shadowsCover from "@/assets/where-the-shadows-break.png.asset.json";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
+import { ComingSoonModal, Modal } from "@/components/site/ComingSoonModal";
+import { storyList, type Story } from "@/lib/stories";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -21,9 +22,6 @@ const platforms = [
 ];
 
 const comingSoon = [
-  { n: "03", mood: "from-[oklch(0.22_0.03_260)] to-[oklch(0.14_0.02_260)]" },
-  { n: "04", mood: "from-[oklch(0.24_0.04_40)] to-[oklch(0.12_0.02_260)]" },
-  { n: "05", mood: "from-[oklch(0.22_0.03_200)] to-[oklch(0.13_0.02_260)]" },
   { n: "06", mood: "from-[oklch(0.24_0.05_60)] to-[oklch(0.12_0.02_260)]" },
   { n: "07", mood: "from-[oklch(0.22_0.03_280)] to-[oklch(0.13_0.02_260)]" },
   { n: "08", mood: "from-[oklch(0.24_0.04_20)] to-[oklch(0.12_0.02_260)]" },
