@@ -143,25 +143,19 @@ function Hero() {
   );
 }
 
-function StoryCard({
-  cover,
-  eyebrow,
-  title,
-  genre,
-  time,
-  description,
-  slug,
+function VolumeCard({
+  story,
   reverse = false,
+  onComingSoon,
 }: {
-  cover: string;
-  eyebrow: string;
-  title: string;
-  genre: string;
-  time: string;
-  description: string;
-  slug: string;
+  story: Story;
   reverse?: boolean;
+  onComingSoon: (kind: "purchase" | "preview") => void;
 }) {
+  const [details, setDetails] = useState(false);
+  const { cover, title, genre, readTime: time, slug } = story;
+  const eyebrow = `${story.volume} — ${genre}`;
+  const description = story.synopsis;
   return (
     <article
       className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${
@@ -203,13 +197,38 @@ function StoryCard({
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-xl">
           {description}
         </p>
+
+        <div className="flex flex-wrap gap-3 pt-2">
+          <button
+            type="button"
+            onClick={() => setDetails(true)}
+            className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 border border-border/70 rounded-sm text-foreground hover:border-gold hover:text-gold transition-colors"
+          >
+            Book Details
+          </button>
+          <button
+            type="button"
+            onClick={() => onComingSoon("purchase")}
+            className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 bg-gold text-primary-foreground rounded-sm hover:bg-[var(--gold-soft)] transition-colors"
+          >
+            Purchase Full Version — $4.99
+          </button>
+          <button
+            type="button"
+            onClick={() => onComingSoon("preview")}
+            className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 border border-gold/40 rounded-sm text-gold bg-gold/5 hover:bg-gold/10 transition-colors"
+          >
+            Sign Up Free for Extended Preview
+          </button>
+        </div>
+
         <div className="pt-2 flex flex-wrap gap-6">
           <Link
             to="/story/$slug"
             params={{ slug }}
             className="group inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.3em] text-foreground border-b border-gold/50 pb-2 hover:text-gold hover:border-gold transition-colors"
           >
-            Read the Story
+            Read the Volume
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
           <Link
@@ -221,6 +240,39 @@ function StoryCard({
           </Link>
         </div>
       </div>
+
+      <Modal open={details} onClose={() => setDetails(false)} labelledBy={`details-${slug}`}>
+        <div className="grid sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-8 p-8 md:p-10">
+          <img
+            src={cover}
+            alt={`${title} cover`}
+            loading="lazy"
+            className="w-full rounded-sm shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)]"
+          />
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.35em] text-gold mb-4">
+              {story.volume}
+            </p>
+            <h2 id={`details-${slug}`} className="font-serif text-3xl md:text-4xl leading-tight">
+              {title}
+            </h2>
+            <p className="mt-3 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+              {genre} · {time}
+            </p>
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              {story.longDescription}
+            </p>
+            <Link
+              to="/read/$slug/$chapter"
+              params={{ slug, chapter: "1" }}
+              className="mt-8 inline-flex items-center gap-3 px-7 py-4 bg-gold text-primary-foreground text-[12px] uppercase tracking-[0.28em] rounded-sm hover:bg-[var(--gold-soft)] transition-colors"
+            >
+              Read Now
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </Modal>
     </article>
   );
 }
