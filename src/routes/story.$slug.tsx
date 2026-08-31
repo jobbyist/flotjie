@@ -1,6 +1,32 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
 import { getStory, stories, type Story } from "@/lib/stories";
 import { Nav } from "@/components/site/Nav";
+import { ComingSoonModal } from "@/components/site/ComingSoonModal";
+
+type CtaKind = "purchase" | "preview" | "audio";
+
+const ctaCopy: Record<CtaKind, { eyebrow: string; title: string; body: string; source: string }> = {
+  purchase: {
+    eyebrow: "Coming Soon",
+    title: "Purchasing opens shortly",
+    body: "Full volumes will be available to buy very soon. Leave your email and we’ll tell you the moment the doors open.",
+    source: "purchase-volume",
+  },
+  preview: {
+    eyebrow: "Coming Soon",
+    title: "Extended previews are on their way",
+    body: "Free extended previews are being prepared. Join the list and we’ll send yours first.",
+    source: "extended-preview",
+  },
+  audio: {
+    eyebrow: "Audio Narration",
+    title: "Audio narration is coming soon",
+    body: "Join the waitlist and we’ll let you know the moment this volume can be listened to.",
+    source: "audio-waitlist",
+  },
+};
+
 
 export const Route = createFileRoute("/story/$slug")({
   loader: ({ params }) => {
