@@ -137,7 +137,7 @@ function AuthorPage() {
                   {s.tagline}
                 </span>
                 <span className="mt-4 text-[11px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-gold transition-colors">
-                  Read the story →
+                  Read the volume →
                 </span>
               </div>
             </Link>

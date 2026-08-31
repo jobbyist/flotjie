@@ -286,7 +286,7 @@ function ReaderPage() {
                 The End
               </span>
               <span className="font-serif text-lg text-foreground group-hover:text-gold transition-colors">
-                Return to the story
+                Return to the volume
               </span>
             </Link>
           )}

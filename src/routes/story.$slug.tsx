@@ -36,7 +36,7 @@ export const Route = createFileRoute("/story/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.story;
-    const title = s ? `${s.title} — Flotjie's Collection` : "Story — Flotjie's Collection";
+    const title = s ? `${s.title} — Flotjie's Collection` : "Volume — Flotjie's Collection";
     const description = s?.synopsis ?? "";
     return {
       meta: [
@@ -51,7 +51,7 @@ export const Route = createFileRoute("/story/$slug")({
   },
   notFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center text-muted-foreground">
-      Story not found. <Link to="/" className="ml-2 text-gold underline">Back home</Link>
+      Volume not found. <Link to="/" className="ml-2 text-gold underline">Back home</Link>
     </div>
   ),
   errorComponent: ({ error, reset }) => (
