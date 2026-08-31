@@ -30,7 +30,7 @@ const comingSoon = [
 ];
 
 const footerCols: { title: string; links: string[] }[] = [
-  { title: "Flotjie's", links: ["About", "The Collection", "Authors", "Future Releases"] },
+  { title: "The World", links: ["About", "The Stories", "The Author", "Coming Soon"] },
   { title: "Discover", links: ["Media", "Press Kit", "Contact", "Newsletter"] },
   { title: "Legal", links: ["Privacy Policy", "Terms", "Cookies", "Accessibility"] },
 ];
@@ -53,13 +53,13 @@ function Nav() {
       <div className="mx-auto max-w-7xl px-6 md:px-10 h-16 flex items-center justify-between">
         <a href="#top" className="font-serif text-xl tracking-wide text-foreground">
           Flotjie<span className="text-gold">’</span>s
-          <span className="ml-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground align-middle">Collection</span>
+          <span className="ml-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground align-middle">World</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-[13px] uppercase tracking-[0.22em] text-muted-foreground">
-          <a href="#collection" className="hover:text-gold transition-colors">Collection</a>
+          <a href="#collection" className="hover:text-gold transition-colors">The Stories</a>
           <a href="#coming-soon" className="hover:text-gold transition-colors">Coming Soon</a>
-          <a href="#universe" className="hover:text-gold transition-colors">Universe</a>
-          <a href="#screen" className="hover:text-gold transition-colors">On Screen</a>
+          <a href="#universe" className="hover:text-gold transition-colors">The World</a>
+          <a href="#screen" className="hover:text-gold transition-colors">The Series</a>
         </nav>
         <a
           href="#collection"
@@ -105,14 +105,15 @@ function Hero({ onPurchaseCollection }: { onPurchaseCollection: () => void }) {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-10 pt-40 md:pt-56 pb-32 text-center">
         <p className="animate-fade-up text-[11px] md:text-xs uppercase tracking-[0.5em] text-gold/90 mb-8">
-          The Flotjie’s Collection
+          by Flotjie — flotjie.world
         </p>
         <h1 className="animate-fade-up font-serif text-[clamp(2.75rem,7vw,6rem)] leading-[1.02] text-foreground">
-          Every Story <em className="text-gold not-italic font-serif italic">Leaves</em> a Mark.
+          Enter Flotjie’s <em className="text-gold not-italic font-serif italic">World</em>.
         </h1>
         <p className="animate-fade-up mt-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed text-muted-foreground">
-          A curated collection of memoirs and literary stories inspired by real lives —
-          exploring identity, family, survival, loss, resilience and redemption.
+          A true story told through five intertwined lives — one narrative universe of
+          memoir, memory and reinvention, exploring identity, family, survival, loss,
+          resilience and redemption.
         </p>
         <div className="animate-fade-up mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
@@ -120,7 +121,7 @@ function Hero({ onPurchaseCollection }: { onPurchaseCollection: () => void }) {
             params={{ slug: "before-i-knew-my-name" }}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gold text-primary-foreground text-[12px] uppercase tracking-[0.28em] rounded-sm hover:bg-[var(--gold-soft)] transition-colors glow-amber"
           >
-            Explore the Collection
+            Enter the World
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
           <Link
@@ -135,7 +136,7 @@ function Hero({ onPurchaseCollection }: { onPurchaseCollection: () => void }) {
             onClick={onPurchaseCollection}
             className="inline-flex items-center gap-3 px-8 py-4 border border-gold/50 text-gold bg-gold/5 text-[12px] uppercase tracking-[0.28em] rounded-sm hover:bg-gold/10 transition-colors"
           >
-            Purchase the Full Collection — $20
+            Own the Complete World — $20
           </button>
         </div>
 
@@ -361,8 +362,8 @@ function Index() {
     },
     collection: {
       eyebrow: "Coming Soon",
-      title: "The Full Collection — $20",
-      body: "The complete Flotjie’s Collection bundle is coming soon. Leave your email to be first in line.",
+      title: "The Complete World — $20",
+      body: "The complete Flotjie’s World bundle, all five volumes, is coming soon. Leave your email to be first in line.",
       source: "purchase-collection",
     },
   } as const;
@@ -374,11 +375,11 @@ function Index() {
       <Nav />
       <Hero onPurchaseCollection={() => setComingSoonKind("collection")} />
 
-      {/* Featured Collection */}
+      {/* The Stories */}
       <Section
         id="collection"
-        eyebrow="Featured Collection"
-        title="Five volumes. One universe of unforgettable lives."
+        eyebrow="The Stories"
+        title="Five lives. Five stories. One world."
       >
         <div className="space-y-32 md:space-y-48">
           {storyList.map((story: Story, i: number) => (
@@ -415,12 +416,12 @@ function Index() {
       />
 
       {/* Volume Universe */}
-      <Section id="universe" eyebrow="The Universe" title="Volumes That Stay With You">
+      <Section id="universe" eyebrow="The World" title="One World. Five Unforgettable Lives.">
 
         <div className="max-w-3xl mx-auto text-center space-y-6 text-lg md:text-xl leading-relaxed text-muted-foreground">
           <p>Some stories entertain. Others transform.</p>
           <p>
-            Each title in the Flotjie’s Collection explores love, survival, family,
+            Each story in Flotjie’s World explores love, survival, family,
             identity, resilience and redemption through deeply human characters
             inspired by real experiences.
           </p>
@@ -458,16 +459,16 @@ function Index() {
         </div>
         <div className="relative mx-auto max-w-4xl px-6 md:px-10 text-center">
           <p className="text-[11px] uppercase tracking-[0.45em] text-gold mb-6">
-            The Long Vision
+            The Series
           </p>
           <h2 className="font-serif text-4xl md:text-6xl leading-tight text-foreground">
             From Page to Screen
           </h2>
           <div className="mt-8 mb-10"><Ornament /></div>
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-            Every story in the Flotjie’s Collection is written with cinematic depth,
+            Every story in Flotjie’s World is written with cinematic depth,
             visual storytelling and emotionally authentic characters — laying the
-            foundation for future limited-series adaptations.
+            foundation for The Series, a future limited-series adaptation for the screen.
           </p>
         </div>
       </section>
@@ -492,11 +493,14 @@ function Index() {
           <div className="grid gap-12 md:grid-cols-4">
             <div>
               <div className="font-serif text-2xl text-foreground">
-                Flotjie<span className="text-gold">’</span>s
+                Flotjie<span className="text-gold">’</span>s World
               </div>
+              <p className="mt-2 text-[11px] uppercase tracking-[0.3em] text-gold/80">
+                flotjie.world
+              </p>
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-                A curated literary universe of memoirs and stories inspired by real
-                lives — written to be read, remembered, and one day, seen.
+                A true story told through five intertwined lives — written to be
+                read, remembered, and one day, seen.
               </p>
             </div>
             {footerCols.map((col) => (
@@ -521,7 +525,7 @@ function Index() {
           </div>
           <div className="mt-16 pt-8 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground/70 tracking-wider">
-              © {new Date().getFullYear()} Flotjie’s Collection. All stories, all rights reserved.
+              © {new Date().getFullYear()} Flotjie’s World — flotjie.world. All stories, all rights reserved.
             </p>
             <div className="flex items-center gap-6 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <a href="#" className="hover:text-gold transition-colors">Instagram</a>

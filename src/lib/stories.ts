@@ -143,13 +143,13 @@ export const authors: Record<string, Author> = {
     slug: "florence-k",
     name: "Florence K.",
     penName: "Florence K.",
-    role: "Author — The Flotjie's Collection",
+    role: "Author — Flotjie's World",
     short:
       "Florence K. writes emotionally powerful memoirs and literary fiction inspired by real lives.",
     bio: [
       "Florence K. writes at the seam between memory and myth — stories drawn from real lives, shaped for the intimacy of the page and the scale of the screen.",
       "Her work explores identity, family, survival and quiet redemption. She is drawn to characters who carry silences, and to the moment those silences finally break.",
-      "Before I Knew My Name and Where The Shadows Break form the opening chapters of The Flotjie's Collection — a body of work she is building volume by volume.",
+      "Before I Knew My Name and Where The Shadows Break form the opening chapters of Flotjie's World — a narrative universe she is building story by story.",
     ],
     pillars: [
       {

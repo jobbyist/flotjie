@@ -11,7 +11,7 @@ export const Route = createFileRoute("/authors/$slug")({
   },
   head: ({ loaderData }) => {
     const a = loaderData?.author;
-    const title = a ? `${a.name} — Author, Flotjie's Collection` : "Author";
+    const title = a ? `${a.name} — Author, Flotjie's World` : "Author";
     return {
       meta: [
         { title },

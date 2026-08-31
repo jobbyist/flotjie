@@ -77,25 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Flotjie's Collection — Stories That Stay With You" },
+      { title: "Flotjie's World — Five Lives. Five Stories. One World." },
       {
         name: "description",
         content:
-          "A cinematic literary collection of memoirs and stories inspired by real lives — identity, family, survival, love, loss and redemption.",
+          "by Flotjie — a true story told through five intertwined lives. Enter Flotjie's World: a narrative universe of memoirs, true events and a story destined for the screen, at flotjie.world.",
       },
-      { name: "author", content: "Flotjie's Collection" },
-      { property: "og:title", content: "Flotjie's Collection — Stories That Stay With You" },
+      { name: "author", content: "by Flotjie" },
+      { property: "og:title", content: "Flotjie's World — Five Lives. Five Stories. One World." },
       {
         property: "og:description",
         content:
-          "A curated collection of memoirs and literary stories inspired by real lives. Designed to be read today. Remembered tomorrow.",
+          "Stories from a world that really happened. Enter Flotjie's World, a true story told through five intertwined lives — designed to be read today, remembered tomorrow.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Flotjie's Collection — Stories That Stay With You" },
-      { name: "description", content: "A premium cinematic digital library for the Flotjie's literary collection, blending streaming service immersion with literary prestige." },
-      { property: "og:description", content: "A premium cinematic digital library for the Flotjie's literary collection, blending streaming service immersion with literary prestige." },
-      { name: "twitter:description", content: "A premium cinematic digital library for the Flotjie's literary collection, blending streaming service immersion with literary prestige." },
+      { name: "twitter:title", content: "Flotjie's World — Five Lives. Five Stories. One World." },
+      { name: "twitter:description", content: "by Flotjie — stories from a world that really happened. flotjie.world" },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ae5f4bc2-e3c7-409e-89e1-2740943309c0/id-preview-96bf208d--4bdc5470-ca39-4216-8f33-be37c92a1b14.lovable.app-1782926934192.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ae5f4bc2-e3c7-409e-89e1-2740943309c0/id-preview-96bf208d--4bdc5470-ca39-4216-8f33-be37c92a1b14.lovable.app-1782926934192.png" },
     ],

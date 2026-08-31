@@ -11,12 +11,12 @@ export function Nav({ transparent = true }: { transparent?: boolean }) {
         <Link to="/" className="font-serif text-xl tracking-wide text-foreground">
           Flotjie<span className="text-gold">’</span>s
           <span className="ml-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground align-middle">
-            Collection
+            World
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-[13px] uppercase tracking-[0.22em] text-muted-foreground">
           <Link to="/" className="hover:text-gold transition-colors">
-            Collection
+            The World
           </Link>
           <Link
             to="/story/$slug"
@@ -37,7 +37,7 @@ export function Nav({ transparent = true }: { transparent?: boolean }) {
             params={{ slug: "florence-k" }}
             className="hover:text-gold transition-colors"
           >
-            Author
+            The Author
           </Link>
         </nav>
         <Link
