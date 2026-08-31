@@ -72,7 +72,7 @@ function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ onPurchaseCollection }: { onPurchaseCollection: () => void }) {
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden grain">
       <img
