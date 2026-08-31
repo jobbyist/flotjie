@@ -130,7 +130,15 @@ function Hero({ onPurchaseCollection }: { onPurchaseCollection: () => void }) {
           >
             Begin Reading
           </Link>
+          <button
+            type="button"
+            onClick={onPurchaseCollection}
+            className="inline-flex items-center gap-3 px-8 py-4 border border-gold/50 text-gold bg-gold/5 text-[12px] uppercase tracking-[0.28em] rounded-sm hover:bg-gold/10 transition-colors"
+          >
+            Purchase the Full Collection — $20
+          </button>
         </div>
+
 
         <div className="animate-fade-up mt-24 flex justify-center">
           <div className="flex flex-col items-center gap-3 text-muted-foreground/60">
