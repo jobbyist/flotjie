@@ -322,7 +322,8 @@ function ComingSoonCard({ n, mood }: { n: string; mood: string }) {
         <div className="absolute inset-0 opacity-40 mix-blend-overlay bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%222%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')]" />
         <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-center gap-3">
           <span className="text-[10px] uppercase tracking-[0.4em] text-gold/80">Untitled</span>
-          <span className="font-serif text-3xl text-foreground/90">Story {n}</span>
+          <span className="font-serif text-3xl text-foreground/90">Volume {n}</span>
+
           <span className="h-px w-8 bg-gold/50" />
           <span className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Coming Soon</span>
         </div>
@@ -333,37 +334,53 @@ function ComingSoonCard({ n, mood }: { n: string; mood: string }) {
 }
 
 function Index() {
+  const [comingSoonKind, setComingSoonKind] = useState<
+    "purchase" | "preview" | "collection" | null
+  >(null);
+
+  const copy = {
+    purchase: {
+      eyebrow: "Coming Soon",
+      title: "Purchasing opens shortly",
+      body: "Full volumes will be available to buy very soon. Leave your email and we’ll tell you the moment the doors open.",
+      source: "purchase-volume",
+    },
+    preview: {
+      eyebrow: "Coming Soon",
+      title: "Extended previews are on their way",
+      body: "Free extended previews are being prepared. Join the list and we’ll send yours first.",
+      source: "extended-preview",
+    },
+    collection: {
+      eyebrow: "Coming Soon",
+      title: "The Full Collection — $20",
+      body: "The complete Flotjie’s Collection bundle is coming soon. Leave your email to be first in line.",
+      source: "purchase-collection",
+    },
+  } as const;
+
+  const active = comingSoonKind ? copy[comingSoonKind] : null;
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Nav />
-      <Hero />
+      <Hero onPurchaseCollection={() => setComingSoonKind("collection")} />
 
       {/* Featured Collection */}
       <Section
         id="collection"
         eyebrow="Featured Collection"
-        title="Two stories. One universe of unforgettable lives."
+        title="Five volumes. One universe of unforgettable lives."
       >
         <div className="space-y-32 md:space-y-48">
-          <StoryCard
-            slug="before-i-knew-my-name"
-            cover={beforeCover.url}
-            eyebrow="Volume 01 — Memoir"
-            title="Before I Knew My Name"
-            genre="Memoir"
-            time="6 hr read"
-            description="A deeply personal memoir about identity, hidden truths, family secrets and the lifelong search for belonging. The story follows a woman whose life is shaped by silence — before she discovers the truth of who she really is."
-          />
-          <StoryCard
-            reverse
-            slug="where-the-shadows-break"
-            cover={shadowsCover.url}
-            eyebrow="Volume 02 — Literary Fiction"
-            title="Where The Shadows Break"
-            genre="Literary Fiction"
-            time="7 hr read"
-            description="An emotionally powerful story of a mother’s unwavering love as she struggles to save her son from addiction while protecting the family she refuses to let fall apart. Inspired by true events."
-          />
+          {storyList.map((story: Story, i: number) => (
+            <VolumeCard
+              key={story.slug}
+              story={story}
+              reverse={i % 2 === 1}
+              onComingSoon={(kind) => setComingSoonKind(kind)}
+            />
+          ))}
         </div>
       </Section>
 
@@ -380,8 +397,18 @@ function Index() {
         </div>
       </Section>
 
-      {/* Story Universe */}
-      <Section id="universe" eyebrow="The Universe" title="Stories That Stay With You">
+      <ComingSoonModal
+        open={active !== null}
+        onClose={() => setComingSoonKind(null)}
+        eyebrow={active?.eyebrow ?? ""}
+        title={active?.title ?? ""}
+        body={active?.body ?? ""}
+        source={active?.source ?? "coming-soon"}
+      />
+
+      {/* Volume Universe */}
+      <Section id="universe" eyebrow="The Universe" title="Volumes That Stay With You">
+
         <div className="max-w-3xl mx-auto text-center space-y-6 text-lg md:text-xl leading-relaxed text-muted-foreground">
           <p>Some stories entertain. Others transform.</p>
           <p>
