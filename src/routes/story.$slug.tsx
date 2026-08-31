@@ -266,6 +266,17 @@ function StoryPage() {
         </section>
       )}
 
+      <ComingSoonModal
+        open={active !== null}
+        onClose={() => setCta(null)}
+        eyebrow={active?.eyebrow ?? ""}
+        title={active?.title ?? ""}
+        body={active?.body ?? ""}
+        source={active?.source ?? "coming-soon"}
+      />
+
+
+
       <div className="pb-20" />
     </div>
   );
