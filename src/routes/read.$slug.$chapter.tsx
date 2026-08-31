@@ -75,6 +75,9 @@ function ReaderPage() {
   const [progress, setProgress] = useState(0);
   const [fontScale, setFontScale] = useState<number>(1);
   const [enter, setEnter] = useState(false);
+  const [cta, setCta] = useState<CtaKind | null>(null);
+  const active = cta ? ctaCopy[cta] : null;
+
 
   // Reading progress
   useEffect(() => {
