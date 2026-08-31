@@ -141,7 +141,32 @@ function StoryPage() {
                 View Chapters
               </a>
             </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => setCta("audio")}
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] px-5 py-3 border border-border/70 rounded-sm text-foreground hover:border-gold hover:text-gold transition-colors"
+              >
+                ♪ Listen to this Volume
+              </button>
+              <button
+                type="button"
+                onClick={() => setCta("purchase")}
+                className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 bg-gold text-primary-foreground rounded-sm hover:bg-[var(--gold-soft)] transition-colors"
+              >
+                Purchase Full Version — $4.99
+              </button>
+              <button
+                type="button"
+                onClick={() => setCta("preview")}
+                className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 border border-gold/40 rounded-sm text-gold bg-gold/5 hover:bg-gold/10 transition-colors"
+              >
+                Sign Up Free for Extended Preview
+              </button>
+            </div>
           </div>
+
         </div>
       </section>
 
