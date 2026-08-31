@@ -36,7 +36,7 @@ export const Route = createFileRoute("/story/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.story;
-    const title = s ? `${s.title} — Flotjie's Collection` : "Volume — Flotjie's Collection";
+    const title = s ? `${s.title} — Flotjie's World` : "Volume — Flotjie's World";
     const description = s?.synopsis ?? "";
     return {
       meta: [
@@ -233,9 +233,9 @@ function StoryPage() {
       {otherStories.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 md:px-10 py-24">
           <p className="text-[11px] uppercase tracking-[0.4em] text-gold mb-4 text-center">
-            Also in the Collection
+            Also in Flotjie's World
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl text-center mb-12">Continue the universe</h2>
+          <h2 className="font-serif text-3xl md:text-4xl text-center mb-12">Continue the journey</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {otherStories.map((s: Story) => (
               <Link

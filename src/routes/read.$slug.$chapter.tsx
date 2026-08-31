@@ -22,7 +22,7 @@ const ctaCopy: Record<CtaKind, { eyebrow: string; title: string; body: string; s
   audio: {
     eyebrow: "Audio Narration",
     title: "Audio narration is coming soon — join the waitlist",
-    body: "We’re recording narrated editions of the collection. Leave your email and we’ll tell you the moment you can listen.",
+    body: "We’re recording narrated editions of Flotjie's World. Leave your email and we’ll tell you the moment you can listen.",
     source: "audio-waitlist",
   },
 };
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/read/$slug/$chapter")({
   head: ({ loaderData }) => {
     const s = loaderData?.story;
     const c = s?.chapters[loaderData!.idx];
-    const title = s && c ? `${c.title} — ${s.title}` : "Reader — Flotjie's Collection";
+    const title = s && c ? `${c.title} — ${s.title}` : "Reader — Flotjie's World";
     return {
       meta: [
         { title },
