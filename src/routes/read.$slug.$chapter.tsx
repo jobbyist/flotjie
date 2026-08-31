@@ -2,6 +2,31 @@ import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-rout
 import { useEffect, useMemo, useState } from "react";
 import { getStory, paragraphsFromBody } from "@/lib/stories";
 import { Nav } from "@/components/site/Nav";
+import { ComingSoonModal } from "@/components/site/ComingSoonModal";
+
+type CtaKind = "purchase" | "preview" | "audio";
+
+const ctaCopy: Record<CtaKind, { eyebrow: string; title: string; body: string; source: string }> = {
+  purchase: {
+    eyebrow: "Coming Soon",
+    title: "Purchasing opens shortly",
+    body: "Full volumes will be available to buy very soon. Leave your email and we’ll tell you the moment the doors open.",
+    source: "purchase-volume",
+  },
+  preview: {
+    eyebrow: "Coming Soon",
+    title: "Extended previews are on their way",
+    body: "Free extended previews are being prepared. Join the list and we’ll send yours first.",
+    source: "extended-preview",
+  },
+  audio: {
+    eyebrow: "Audio Narration",
+    title: "Audio narration is coming soon — join the waitlist",
+    body: "We’re recording narrated editions of the collection. Leave your email and we’ll tell you the moment you can listen.",
+    source: "audio-waitlist",
+  },
+};
+
 
 export const Route = createFileRoute("/read/$slug/$chapter")({
   loader: ({ params }) => {
@@ -50,6 +75,9 @@ function ReaderPage() {
   const [progress, setProgress] = useState(0);
   const [fontScale, setFontScale] = useState<number>(1);
   const [enter, setEnter] = useState(false);
+  const [cta, setCta] = useState<CtaKind | null>(null);
+  const active = cta ? ctaCopy[cta] : null;
+
 
   // Reading progress
   useEffect(() => {
@@ -169,7 +197,31 @@ function ReaderPage() {
             <span className="text-xs">✦</span>
             <span className="h-px w-10 bg-gradient-to-l from-transparent to-[var(--gold)]/60" />
           </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setCta("audio")}
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] px-5 py-3 border border-border/70 rounded-sm text-foreground hover:border-gold hover:text-gold transition-colors"
+            >
+              ♪ Listen to this Volume
+            </button>
+            <button
+              type="button"
+              onClick={() => setCta("purchase")}
+              className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 bg-gold text-primary-foreground rounded-sm hover:bg-[var(--gold-soft)] transition-colors"
+            >
+              Purchase Full Version — $4.99
+            </button>
+            <button
+              type="button"
+              onClick={() => setCta("preview")}
+              className="text-[11px] uppercase tracking-[0.28em] px-5 py-3 border border-gold/40 rounded-sm text-gold bg-gold/5 hover:bg-gold/10 transition-colors"
+            >
+              Sign Up Free for Extended Preview
+            </button>
+          </div>
         </div>
+
 
         <div
           className="prose-reader font-serif leading-[1.85] text-foreground/90"
@@ -234,12 +286,22 @@ function ReaderPage() {
                 The End
               </span>
               <span className="font-serif text-lg text-foreground group-hover:text-gold transition-colors">
-                Return to the story
+                Return to the volume
               </span>
             </Link>
           )}
         </nav>
       </article>
+
+      <ComingSoonModal
+        open={active !== null}
+        onClose={() => setCta(null)}
+        eyebrow={active?.eyebrow ?? ""}
+        title={active?.title ?? ""}
+        body={active?.body ?? ""}
+        source={active?.source ?? "coming-soon"}
+      />
+
     </div>
   );
 }
