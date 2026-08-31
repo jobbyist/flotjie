@@ -65,9 +65,13 @@ export const Route = createFileRoute("/story/$slug")({
 
 function StoryPage() {
   const { story } = Route.useLoaderData();
+  const [cta, setCta] = useState<CtaKind | null>(null);
   const otherStories: Story[] = Object.values(stories).filter(
     (s: Story) => s.slug !== story.slug,
   );
+  const active = cta ? ctaCopy[cta] : null;
+
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
