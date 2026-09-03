@@ -14,6 +14,65 @@ export type Database = {
   }
   public: {
     Tables: {
+      journal_comments: {
+        Row: {
+          article_slug: string
+          body: string
+          created_at: string
+          display_name: string
+          id: string
+          parent_id: string | null
+        }
+        Insert: {
+          article_slug: string
+          body: string
+          created_at?: string
+          display_name: string
+          id?: string
+          parent_id?: string | null
+        }
+        Update: {
+          article_slug?: string
+          body?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          parent_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "journal_comments_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "journal_comments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      journal_reactions: {
+        Row: {
+          article_slug: string
+          created_at: string
+          id: string
+          kind: string
+          visitor_id: string
+        }
+        Insert: {
+          article_slug: string
+          created_at?: string
+          id?: string
+          kind: string
+          visitor_id: string
+        }
+        Update: {
+          article_slug?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
